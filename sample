@@ -1,0 +1,81 @@
+Active Internet connections (servers and established)
+Proto Recv-Q Send-Q Local Address           Foreign Address         State       PID/Program name
+tcp        0      0 0.0.0.0:22022           0.0.0.0:*               LISTEN      1270/sshd
+tcp        0      0 0.0.0.0:139             0.0.0.0:*               LISTEN      1390/smbd
+tcp        0      0 0.0.0.0:445             0.0.0.0:*               LISTEN      1390/smbd
+tcp        0      0 192.168.123.125:52934   192.168.123.41:22       ESTABLISHED 57703/ssh
+tcp        0      0 192.168.123.125:36260   192.168.123.121:389     ESTABLISHED 1332/sssd_be
+tcp        0      0 192.168.123.125:36258   192.168.123.121:3268    ESTABLISHED 1332/sssd_be
+tcp        0      0 192.168.123.125:59882   192.168.123.41:22       ESTABLISHED 42419/ssh
+tcp        0      0 192.168.123.125:52814   192.168.123.41:22       ESTABLISHED 54455/ssh
+tcp        0      0 64.94.18.107:22022      195.56.119.18:33403     ESTABLISHED 54397/sshd: arutkai
+tcp        0      0 192.168.123.125:51726   192.168.123.41:22       ESTABLISHED 36594/ssh
+tcp        0    332 64.94.18.107:22022      185.36.21.10:58714      ESTABLISHED 53764/sshd: lmeszar
+tcp        0      0 64.94.18.107:48594      54.215.183.157:443      ESTABLISHED 774/falcon-sensor
+tcp        0      0 192.168.123.125:37478   10.18.236.51:22         ESTABLISHED 40648/ssh
+tcp        0      0 64.94.18.107:22022      198.11.8.66:60111       ESTABLISHED 41632/sshd: Mrikema
+tcp        0      0 64.94.18.107:22022      198.11.8.66:63729       ESTABLISHED 20470/sshd: Mrikema
+tcp        0      0 64.94.18.107:22022      195.56.119.18:47688     ESTABLISHED 36542/sshd: arutkai
+tcp        0      0 192.168.123.125:52896   192.168.123.41:22       ESTABLISHED 56865/ssh
+tcp6       0      0 :::22022                :::*                    LISTEN      1270/sshd
+tcp6       0      0 :::139                  :::*                    LISTEN      1390/smbd
+tcp6       0      0 :::445                  :::*                    LISTEN      1390/smbd
+udp        0      0 64.94.18.107:123        0.0.0.0:*                           1415/ntpd
+udp        0      0 192.168.123.125:123     0.0.0.0:*                           1415/ntpd
+udp        0      0 127.0.0.1:123           0.0.0.0:*                           1415/ntpd
+udp        0      0 0.0.0.0:123             0.0.0.0:*                           1415/ntpd
+udp        0      0 64.94.18.255:137        0.0.0.0:*                           1377/nmbd
+udp        0      0 64.94.18.107:137        0.0.0.0:*                           1377/nmbd
+udp        0      0 192.168.123.255:137     0.0.0.0:*                           1377/nmbd
+udp        0      0 192.168.123.125:137     0.0.0.0:*                           1377/nmbd
+udp        0      0 0.0.0.0:137             0.0.0.0:*                           1377/nmbd
+udp        0      0 64.94.18.255:138        0.0.0.0:*                           1377/nmbd
+udp        0      0 64.94.18.107:138        0.0.0.0:*                           1377/nmbd
+udp        0      0 192.168.123.255:138     0.0.0.0:*                           1377/nmbd
+udp        0      0 192.168.123.125:138     0.0.0.0:*                           1377/nmbd
+udp        0      0 0.0.0.0:138             0.0.0.0:*                           1377/nmbd
+udp6       0      0 fe80::215:5dff:fe62:123 :::*                                1415/ntpd
+udp6       0      0 fe80::215:5dff:fe62:123 :::*                                1415/ntpd
+udp6       0      0 ::1:123                 :::*                                1415/ntpd
+udp6       0      0 :::123                  :::*                                1415/ntpd
+Active UNIX domain sockets (servers and established)
+Proto RefCnt Flags       Type       State         I-Node   PID/Program name    Path
+unix  2      [ ]         DGRAM                    7013065  53769/systemd       /run/user/1198001132/systemd/notify
+unix  2      [ ]         DGRAM                    5745589  31480/systemd       /run/user/1198001168/systemd/notify
+unix  2      [ ]         DGRAM                    5347510  8865/systemd        /run/user/1198001159/systemd/notify
+unix  2      [ ]         DGRAM                    4834774  26327/systemd       /run/user/1198001158/systemd/notify
+unix  2      [ ACC ]     STREAM     LISTENING     7013066  53769/systemd       /run/user/1198001132/systemd/private
+unix  2      [ ACC ]     STREAM     LISTENING     5745590  31480/systemd       /run/user/1198001168/systemd/private
+unix  2      [ ACC ]     STREAM     LISTENING     5347511  8865/systemd        /run/user/1198001159/systemd/private
+unix  2      [ ACC ]     STREAM     LISTENING     4834775  26327/systemd       /run/user/1198001158/systemd/private
+unix  2      [ ACC ]     SEQPACKET  LISTENING     10843    1/init              /run/udev/control
+unix  2      [ ACC ]     STREAM     LISTENING     19521    1377/nmbd           /var/run/samba/nmbd/unexpected
+unix  2      [ ACC ]     STREAM     LISTENING     13068    1/init              /var/lib/lxd/unix.socket
+unix  2      [ ACC ]     STREAM     LISTENING     10828    1/init              /run/systemd/private
+unix  2      [ ]         DGRAM                    10832    1/init              /run/systemd/journal/syslog
+unix  27     [ ]         DGRAM                    10833    1/init              /run/systemd/journal/dev-log
+unix  2      [ ACC ]     STREAM     LISTENING     10834    1/init              /run/systemd/journal/stdout
+unix  9      [ ]         DGRAM                    10835    1/init              /run/systemd/journal/socket
+unix  2      [ ACC ]     STREAM     LISTENING     16743    941/sssd            /var/lib/sss/pipes/private/sbus-monitor
+unix  2      [ ACC ]     STREAM     LISTENING     10836    1/init              /run/lvm/lvmpolld.socket
+unix  2      [ ACC ]     STREAM     LISTENING     10837    1/init              /run/systemd/fsck.progress
+unix  2      [ ACC ]     STREAM     LISTENING     10838    1/init              /run/lvm/lvmetad.socket
+unix  2      [ ACC ]     STREAM     LISTENING     17488    1332/sssd_be        /var/lib/sss/pipes/private/sbus-dp_lastpass.local.1332
+unix  2      [ ACC ]     STREAM     LISTENING     16768    1338/sssd_pam       /var/lib/sss/pipes/pam
+unix  2      [ ACC ]     STREAM     LISTENING     16769    1338/sssd_pam       /var/lib/sss/pipes/private/pam
+unix  2      [ ACC ]     STREAM     LISTENING     17499    1337/sssd_nss       /var/lib/sss/pipes/nss
+unix  2      [ ]         DGRAM                    19527    1396/smbd           /var/lib/samba/private/msg.sock/1396
+unix  2      [ ]         DGRAM                    19506    1377/nmbd           /var/lib/samba/private/msg.sock/1377
+unix  2      [ ]         DGRAM                    18665    1390/smbd           /var/lib/samba/private/msg.sock/1390
+unix  2      [ ]         DGRAM                    19526    1391/smbd           /var/lib/samba/private/msg.sock/1391
+unix  2      [ ACC ]     STREAM     LISTENING     17491    1336/python3        /var/run/fail2ban/fail2ban.sock
+unix  2      [ ACC ]     STREAM     LISTENING     13063    1/init              /run/uuidd/request
+unix  2      [ ACC ]     STREAM     LISTENING     13064    1/init              /run/acpid.socket
+unix  2      [ ACC ]     STREAM     LISTENING     16427    1218/iscsid         @ISCSIADM_ABSTRACT_NAMESPACE
+unix  2      [ ACC ]     STREAM     LISTENING     13065    1/init              /run/snapd.socket
+unix  2      [ ACC ]     STREAM     LISTENING     13066    1/init              /run/snapd-snap.socket
+unix  2      [ ACC ]     STREAM     LISTENING     13067    1/init              /var/run/dbus/system_bus_socket
+unix  3      [ ]         DGRAM                    10827    1/init              /run/systemd/notify
+unix  3      [ ]         STREAM     CONNECTED     7028932  53774/(sd-pam)
+unix  2      [ ]         DGRAM                    6368400  56864/sudo
+unix  2      [ ]         DGRAM                    6365943  54454/sudo
