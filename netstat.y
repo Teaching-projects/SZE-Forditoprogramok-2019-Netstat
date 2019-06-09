@@ -31,8 +31,15 @@ analyze:
 
 line:
     T_NEWLINE
-    | T_PROTO T_WHITESPACE T_NUMBER T_WHITESPACE T_NUMBER T_WHITESPACE T_IP T_COLON T_NUMBER T_WHITESPACE T_IP T_COLON T_NUMBER T_WHITESPACE T_STATE T_WHITESPACE T_NUMBER T_PER T_WORD T_NEWLINE { fprintf(stderr, "Ip and port that get caught: %s %i\n", $7, $9); ++valid_lines; }
+    | T_PROTO T_WHITESPACE T_NUMBER T_WHITESPACE T_NUMBER T_WHITESPACE T_IP T_COLON T_NUMBER T_WHITESPACE T_IP T_COLON T_NUMBER T_WHITESPACE T_STATE T_WHITESPACE pid_per_program T_NEWLINE { fprintf(stderr, "Ip and port that get caught: %s %i\n", $7, $9); ++valid_lines; }
     | error T_NEWLINE { yyerrok; }
+
+pid_per_program:
+    T_NUMBER T_PER words
+
+words:
+    T_WORD
+    | T_WORD T_WHITESPACE T_WORD
 
 %%
 
