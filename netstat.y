@@ -9,8 +9,16 @@ extern FILE* yyin;
 
 void yyerror(const char* s);
 
-int valid_lines = 0;
+void handle_port_occurence(int port);
 
+struct PortStorage {
+  int port, occurence;
+  struct PortStorage *next;
+};
+
+struct PortStorage *head = NULL;
+
+int valid_lines = 0;
 %}
 
 %union {
@@ -31,7 +39,7 @@ analyze:
 
 line:
     T_NEWLINE
-    | T_PROTO T_WHITESPACE T_NUMBER T_WHITESPACE T_NUMBER T_WHITESPACE T_IP T_COLON T_NUMBER T_WHITESPACE T_IP T_COLON T_NUMBER T_WHITESPACE T_STATE T_WHITESPACE pid_per_program T_NEWLINE { fprintf(stderr, "Ip and port that get caught: %s %i\n", $7, $9); ++valid_lines; }
+    | T_PROTO T_WHITESPACE T_NUMBER T_WHITESPACE T_NUMBER T_WHITESPACE T_IP T_COLON T_NUMBER T_WHITESPACE T_IP T_COLON T_NUMBER T_WHITESPACE T_STATE T_WHITESPACE pid_per_program T_NEWLINE {handle_port_occurence($13); ++valid_lines; }
     | error T_NEWLINE { yyerrok; }
 
 pid_per_program:
@@ -44,8 +52,12 @@ words:
 %%
 
 int main(int argc, char** argv) {
+
   if (argc != 1) {
-    yyin = fopen(argv[1], "r");
+    if(!(yyin = fopen(argv[1], "r"))) {
+      fprintf(stderr, "Failed to open source file!\n");
+      exit(1);
+    }
   } else {
 	  yyin = stdin;
     fprintf(stdout, "Welcome to the netstat -apn output parser. Please type your first analyzed line!\n");
@@ -54,7 +66,43 @@ int main(int argc, char** argv) {
 		yyparse();
 	} while(!feof(yyin));
   fprintf(stdout, "Valid lines %i\n", valid_lines);
+
+  if (head != NULL) {
+    fprintf(stdout, "Result:");
+    struct PortStorage *current = head;
+    while (current != NULL) {
+      fprintf(stderr, "Port: %i, Occurence: %i\n", current->port, current->occurence);
+      current = current->next;
+    }
+  }
 	return 0;
 }
+
 void yyerror(const char* s) {
+}
+
+void handle_port_occurence(int port) {
+  fprintf(stderr, "Port arrived: %i\n", port);
+  if (head == NULL) {
+    fprintf(stderr, "Hat a head nagyon null!\n");
+    head = (struct PortStorage*) malloc(sizeof(struct PortStorage));
+    head->port = port;
+    head->occurence = 1;
+  } else {
+    struct PortStorage *current = head;
+    while (current != NULL) {
+      if (current->port == port) {
+        current->occurence++;
+        return;
+      }
+      if (current->next == NULL) {
+        break;
+      }
+      current = current->next;
+    }
+    struct PortStorage *next = (struct PortStorage*) malloc(sizeof(struct PortStorage));
+    next->port = port;
+    next->occurence = 1;
+    current->next = next;
+  }
 }
