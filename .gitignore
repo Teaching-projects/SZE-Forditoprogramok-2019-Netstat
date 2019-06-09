@@ -1,2 +1,4 @@
 lex.yy.c
-netstat_result_parser
+netstat.tab.c
+netstat.tab.h
+netstat
