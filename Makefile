@@ -1,11 +1,13 @@
-SRCS = main.c netstat.c
-CC = gcc
+all: netstat
 
-lexer:
+netstat.tab.c netstat.tab.h:	netstat.y
+	bison -d netstat.y
+
+lex.yy.c: netstat.l netstat.tab.h
 	flex netstat.l
 
-compile: lexer
-	$(CC) lex.yy.c -o netstat_result_parser -ll
+netstat: lex.yy.c netstat.tab.c netstat.tab.h
+	gcc -v -o netstat netstat.tab.c lex.yy.c
 
 clean:
-	rm lex.yy.c netstat_result_parser
+	rm netstat netstat.tab.c lex.yy.c netstat.tab.h

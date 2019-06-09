@@ -1,25 +1,18 @@
-%{
-  #include <stdio.h>
-
-  int num_char = 0;
-%}
 %option noyywrap
+%{
+#include <stdio.h>
+
+#include "netstat.tab.h"
+%}
+
 %%
-.          { ++num_char; }
-\n          { ++num_char; }
+tcp|tcp6|udp|udp6                       {return T_PROTO;}
+ESTABLISHED|LISTEN|TIME_WAIT|CLOSE_WAIT {return T_STATE;}
+:                                       {return T_COLON;}
+\d{1,3}.\d{1,3}.\d{1,3}.\d{1,3}           {return T_IP;}
+\d{1,5}                                   {return T_NUMBER;}
+\d/[a-z]+                                 {return T_PID_PROCESS;}
+[ \t]                                     {return T_WHITESPACE;}
+\n                                        {return T_NEWLINE;}
 %%
-int main(int argc, char **argv) {
-  if(argc < 2){
-    fprintf(stderr,"Usage: cat files....\n");
-    exit(1);
-  }
-  yyin = fopen(argv[1],"r");
-  if(yyin == NULL){
-    fprintf(stderr,"cat: unable to open %s\n",
-              argv[1]);
-    yyterminate();
-  }
-  
-  yylex();
-  fprintf(stdout, "Number of characters in the file %d\n", num_char);
-}
+
