@@ -11,12 +11,14 @@ void yyerror(const char* s);
 
 void handle_port_occurence(int port);
 
-struct PortStorage {
+typedef struct PortStorage {
   int port, occurence;
   struct PortStorage *next;
-};
+} PortStorage_t;
 
-struct PortStorage *head = NULL;
+PortStorage_t *head = NULL;
+
+PortStorage_t* initialize_next_port_storage(int port);
 
 int valid_lines = 0;
 %}
@@ -82,14 +84,10 @@ void yyerror(const char* s) {
 }
 
 void handle_port_occurence(int port) {
-  fprintf(stderr, "Port arrived: %i\n", port);
   if (head == NULL) {
-    fprintf(stderr, "Hat a head nagyon null!\n");
-    head = (struct PortStorage*) malloc(sizeof(struct PortStorage));
-    head->port = port;
-    head->occurence = 1;
+    head = initialize_next_port_storage(port);
   } else {
-    struct PortStorage *current = head;
+    PortStorage_t *current = head;
     while (current != NULL) {
       if (current->port == port) {
         current->occurence++;
@@ -100,9 +98,13 @@ void handle_port_occurence(int port) {
       }
       current = current->next;
     }
-    struct PortStorage *next = (struct PortStorage*) malloc(sizeof(struct PortStorage));
+    current->next = initialize_next_port_storage(port);
+  }
+}
+
+PortStorage_t* initialize_next_port_storage(int port) {
+    PortStorage_t* next = (PortStorage_t*) malloc(sizeof(struct PortStorage));
     next->port = port;
     next->occurence = 1;
-    current->next = next;
-  }
+    return next;
 }
