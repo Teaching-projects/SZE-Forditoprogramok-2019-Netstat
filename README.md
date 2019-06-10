@@ -15,7 +15,9 @@
 ### Requirements and how to build the project
 
   ##### Requirements:
-    flex, bison, [gcc](https://en.wikipedia.org/wiki/GNU_Compiler_Collection)
+    * flex
+    * bison
+    * [gcc](https://en.wikipedia.org/wiki/GNU_Compiler_Collection)
 
   ##### Install on ubuntu systems:
     apt-get update && apt-get install bison flex build-essential
