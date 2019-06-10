@@ -67,13 +67,13 @@ int main(int argc, char** argv) {
 	do {
 		yyparse();
 	} while(!feof(yyin));
-  fprintf(stdout, "Valid lines %i\n", valid_lines);
+  fprintf(stdout, "##############\nNumber of accepted lines:  %i\n##############\n", valid_lines);
 
   if (head != NULL) {
-    fprintf(stdout, "Result:");
+    fprintf(stdout, "The statistic of the outgoing ports is the following:\n");
     struct PortStorage *current = head;
     while (current != NULL) {
-      fprintf(stderr, "Port: %i, Occurence: %i\n", current->port, current->occurence);
+      fprintf(stdout, "Port: %i,\tOccurence: %i\n", current->port, current->occurence);
       current = current->next;
     }
   }
