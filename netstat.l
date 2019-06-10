@@ -1,25 +1,30 @@
-%{
-  #include <stdio.h>
-
-  int num_char = 0;
-%}
 %option noyywrap
+%{
+#include <stdio.h>
+
+#include "netstat.tab.h"
+%}
+
+DIGIT [0-9]
+WORD [a-zA-Z:_-]+
+
 %%
-.          { ++num_char; }
-\n          { ++num_char; }
+"tcp"|"tcp6"|"udp"|"udp6"                               {return T_PROTO;}
+"ESTABLISHED"|"LISTEN"|"TIME_WAIT"|"CLOSE_WAIT"         {return T_STATE;}
+":"                                                     {return T_COLON;}
+{WORD}                                                  {return T_WORD;}
+{DIGIT}{1,3}\.{DIGIT}{1,3}\.{DIGIT}{1,3}\.{DIGIT}{1,3}  {
+                                                          yylval.ip = malloc(strlen(yytext));
+                                                          strncpy(yylval.ip, yytext, strlen(yytext));
+                                                          return T_IP;
+                                                        }
+{DIGIT}+                                                {
+                                                          yylval.num = atoi(yytext);
+                                                          return T_NUMBER;
+                                                        }
+"/"                                                     {return T_PER;}
+[ \t]+                                                  {return T_WHITESPACE;}
+\n                                                      {return T_NEWLINE;}
+.                                                       {return T_ELSE;}
 %%
-int main(int argc, char **argv) {
-  if(argc < 2){
-    fprintf(stderr,"Usage: cat files....\n");
-    exit(1);
-  }
-  yyin = fopen(argv[1],"r");
-  if(yyin == NULL){
-    fprintf(stderr,"cat: unable to open %s\n",
-              argv[1]);
-    yyterminate();
-  }
-  
-  yylex();
-  fprintf(stdout, "Number of characters in the file %d\n", num_char);
-}
+
